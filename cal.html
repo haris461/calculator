@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+        }
+
+        .calculator {
+            border: 2px solid #717377;
+            padding: 20px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgb(113, 115, 119, 0.5);
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            grid-template-rows: auto repeat(5, 80px);
+            gap: 10px;
+        }
+
+        input {
+            grid-column: span 4;
+            border: none;
+            padding: 24px;
+            background: transparent;
+            font-size: 40px;
+            text-align: right;
+        }
+
+        button {
+            border: none;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            background: transparent;
+            color: azure;
+            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .equal {
+            background-color: rgb(173, 122, 27);
+        }
+
+        .operator {
+            color: yellowgreen
+        }
+
+        .clear-del {
+            color: orange;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var input = document.getElementById("inputb");
+            var buttons = document.querySelectorAll("button");
+
+            var string = "";
+            Array.from(buttons).forEach((button) => {
+                button.addEventListener("click", (e) => {
+                    if (e.target.innerHTML == "=") {
+                        string = eval(string);
+                        input.value = string;
+                    } else if (e.target.innerHTML == "ac") {
+                        string = "";
+                        input.value = string;
+                    } else if (e.target.innerHTML == "del") {
+                        string = string.slice(0, -1);
+                        input.value = string;
+                    } else {
+                        string += e.target.innerHTML;
+                        input.value = string;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="inputb">
+        <button class="clear-del">ac</button>
+        <button class="clear-del">del</button>
+        <button class="operator">%</button>
+        <button class="operator">/</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button class="operator">*</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button class="operator">-</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button class="operator">+</button>
+        <button>00</button>
+        <button>0</button>
+        <button>.</button>
+        <button class="equal">=</button>
+    </div>
+</body>
+
+</html>
